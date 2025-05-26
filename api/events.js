@@ -13,14 +13,13 @@ const fetchEvents = async () => {
   try {
     console.log("Starting event scraping using JSON-LD...");
     const browser = await puppeteer.launch({
-      headless: true, // Keep headless for production
+      headless: true, 
       args: ['--no-sandbox', '--disable-setuid-sandbox'],
     });
     const page = await browser.newPage();
     await page.goto(MEETUP_URL, { waitUntil: 'domcontentloaded', timeout: 0 });
     console.log("Page loaded...");
 
-    // Extract the JSON-LD data
     const events = await page.evaluate(() => {
       const eventList = [];
       const ldJsonScripts = document.querySelectorAll('script[type="application/ld+json"]');

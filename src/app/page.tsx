@@ -179,20 +179,26 @@ const HomePage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  useEffect(() => {
-    const getEvents = async () => {
-      try {
-        const data = await fetchEvents();
-        setEvents(data);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('An unknown error occurred.');
-        }
+useEffect(() => {
+  const getEvents = async () => {
+    try {
+      const data = await fetchEvents();
+      setEvents(data);
+      setLoading(false); // Don't forget to set loading to false after fetch!
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('An unknown error occurred.');
       }
-    getEvents();
-  }, []);
+      setLoading(false);
+    }
+  };
+
+  getEvents();
+}, []);
+
+
 
   if (loading) {
     return (
@@ -302,7 +308,7 @@ const HomePage = () => {
       </div>
     </div>
   );
-};
+}
 
 export default HomePage;
 
