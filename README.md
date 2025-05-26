@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎉 Sydney Events Scraper & Web App
 
-## Getting Started
+A full-stack web application that scrapes events from [Meetup.com - Sydney](https://www.meetup.com/cities/au/sydney/) using Puppeteer, exposes them through an Express API, and displays them beautifully in a Next.js frontend.
 
-First, run the development server:
+## 🚀 How to Run Locally
+
+### 1. Clone the Repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/your-username/sydney-events
+cd sydney-events
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 2. Start the Backend (Express + Puppeteer)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+cd api
+node index.js
+```
 
-## Learn More
+📍 By default, runs on `http://localhost:3001/api/events`
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 3. Start the Frontend (Next.js)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm install
+npm run dev
+```
 
-## Deploy on Vercel
+📍 Runs on `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Make sure the backend server is running to fetch events.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Tech Stack
+
+* **Frontend**: Next.js 13+, Tailwind CSS, Framer Motion, ShadCN UI
+* **Backend**: Node.js, Express.js, Puppeteer
+* **Deployment**: Vercel (Frontend), Render/Localhost (Backend)
