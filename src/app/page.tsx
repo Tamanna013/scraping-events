@@ -19,6 +19,10 @@ export interface Event {
   description: string;
   images: string[];
   ticketUrl: string;
+  artists?: string[];     
+  genre?: string;
+  ageRestriction?: string;
+  additionalInfo?: string;
 }
 
 const fetchEvents = async () => {
@@ -35,7 +39,7 @@ const fetchEvents = async () => {
   }
 };
 
-const EventCard = ({ event }: { event: any }) => {
+const EventCard = ({ event }: { event: Event }) => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [optIn, setOptIn] = useState(false);
@@ -171,7 +175,7 @@ const EventCard = ({ event }: { event: any }) => {
 };
 
 const HomePage = () => {
-  const [events, setEvents] = useState<any[]>([]);
+  const [events, setEvents] = useState<Event[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -180,13 +184,13 @@ const HomePage = () => {
       try {
         const data = await fetchEvents();
         setEvents(data);
-      } catch (err: any) {
-        setError(err.message || 'An error occurred while fetching events.');
-      } finally {
-        setLoading(false);
+      } catch (err: unknown) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError('An unknown error occurred.');
+        }
       }
-    };
-
     getEvents();
   }, []);
 
