@@ -5,11 +5,21 @@ import { Input } from '@/components/ui/input';
 import { Checkbox } from '@/components/ui/checkbox';
 import { Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog'; 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'; 
-import { cn } from "@/lib/utils"
 import { motion, AnimatePresence } from 'framer-motion'; 
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert" 
 import { AlertCircle } from "lucide-react" 
 import Image from 'next/image'; 
+
+export interface Event {
+  id: string;
+  title: string;
+  date: string;
+  time: string;
+  location: string;
+  description: string;
+  images: string[];
+  ticketUrl: string;
+}
 
 const fetchEvents = async () => {
   try {
@@ -193,7 +203,7 @@ const HomePage = () => {
           Fetching the Hottest Events...
         </h2>
         <p className="text-sm text-red-300">
-          Hang tight! We're gathering Sydney's finest for you.
+          Hang tight! We&apos;re gathering Sydney&apos;s finest for you.
         </p>
       </div>
     );
@@ -216,23 +226,21 @@ const HomePage = () => {
     );
   }
 
-  // Dummy hero data
   const heroData = {
     title: "Discover the Best Events in Sydney",
     description: "Find and book tickets for concerts, festivals, and more.",
-    imageUrl: "/sydney.jpg", // Replace with an actual image URL
+    imageUrl: "/sydney.jpg", 
   };
 
   return (
     <div className="bg-gray-950">
-      {/* Hero Section */}
       <div className="relative w-full h-[400px] flex items-center justify-center bg-gray-900">
         <Image
           src={heroData.imageUrl}
           alt={heroData.title}
           layout="fill"
           objectFit="cover"
-          className="opacity-50 rounded-b-xl" // Reduced opacity and rounded bottom
+          className="opacity-50 rounded-b-xl" 
         />
         <div className="absolute z-10 text-center px-4">
           <h1
@@ -248,7 +256,7 @@ const HomePage = () => {
             className="mt-8 bg-red-900 text-white hover:bg-red-800
                                   px-8 py-3 rounded-full text-lg
                                   transition-all duration-300 shadow-lg
-                                  font-semibold" onClick={() => window.scrollTo({ top: 400, behavior: 'smooth' })} // Smooth scroll to events section
+                                  font-semibold" onClick={() => window.scrollTo({ top: 400, behavior: 'smooth' })} 
           >
             Explore Events
           </Button>
